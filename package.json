@@ -1,0 +1,36 @@
+{
+  "name": "vanilla-starter-site",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "UNLICENSED",
+  "scripts": {
+    "lint": "eslint src/**/*.js",
+    "build-i18n": "node i18n.js",
+    "watch-i18n": "chokidar \"src/**/lang/*.json\" -c \"yarn build-i18n\"",
+    "start": "yarn build-i18n && yarn move-assets && concurrently \"yarn watch-i18n\" \"yarn watch-assets\" \"parcel src/index.html\"",
+    "move-assets": "copyfiles -a -u 2 \"src/**!(assets)/assets/**\" src/",
+    "watch-assets": "chokidar -i \"src/assets\" \"src/**/assets/**\" -c \"yarn move-assets\"",
+    "build-site": "rimraf dist && yarn build-i18n && yarn move-assets && parcel build src/index.html --public-url ./",
+    "build": "yarn lint && yarn build-site"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "autoprefixer": "^9.6.1",
+    "chokidar-cli": "^2.0.0",
+    "concurrently": "^4.1.2",
+    "copyfiles": "^2.1.1",
+    "eslint": "^6.2.2",
+    "glob": "^7.1.4",
+    "i18next": "^17.0.12",
+    "i18next-browser-languagedetector": "^3.0.3",
+    "json-concat": "^0.0.1",
+    "loc-i18next": "^0.1.4",
+    "parcel-bundler": "^1.12.3",
+    "posthtml-expressions": "^1.1.1",
+    "posthtml-include": "^1.2.0",
+    "precss": "^4.0.0",
+    "rimraf": "^3.0.0"
+  }
+}

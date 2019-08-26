@@ -1,0 +1,11 @@
+<header class="l-box">
+  <div class="l-cover">
+    <img src="assets/img/morty.jpg" alt="Borat Smiling" />
+    <h1 data-i18n="header.welcome"></h1>
+  </div>
+  <ul class="l-box invert">
+    <each loop="item, index in menuItems">
+      <li data-i18n="header.{{ item }}">{{ index }}: {{ item }}</li>
+    </each>
+  </ul>
+</header>
